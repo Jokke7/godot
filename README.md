@@ -36,4 +36,4 @@ npm run dev
 
 ## 🔗 Links
 
-Repository: https://github.com/Jokke7/godot-portfolio
+Repository: https://github.com/Jokke7/godot
