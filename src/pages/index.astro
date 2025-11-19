@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout 
+  title="Home | Portfolio" 
+  description="Welcome to my professional portfolio and CV"
+>
+  <Header />
+  
+  <main class="flex-1 pt-[var(--header-height)]">
+    <section class="min-h-[calc(100vh-var(--header-height))] flex items-center">
+      <div class="container">
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+          <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+            Hi, I'm <span class="text-gradient">Your Name</span>
+          </h1>
+          <p class="text-xl md:text-2xl text-[var(--color-text-secondary)] max-w-2xl mx-auto">
+            A passionate developer crafting exceptional digital experiences with modern web technologies.
+          </p>
+          <div class="flex gap-4 justify-center pt-8">
+            <a 
+              href="/cv"
+              class="px-6 py-3 text-base font-medium text-white bg-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary-hover)] hover:shadow-[var(--shadow-glow)] transition-all duration-[var(--transition-base)]"
+            >
+              View My CV
+            </a>
+            <a 
+              href="#contact"
+              class="px-6 py-3 text-base font-medium text-[var(--color-text)] bg-[var(--color-surface)] rounded-lg hover:bg-[var(--color-surface-elevated)] transition-all duration-[var(--transition-base)]"
+            >
+              Get in Touch
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</BaseLayout>
