@@ -1,0 +1,9 @@
+{
+  "id": "software-engineer",
+  "title": "Software Engineer",
+  "subtitle": "Full-stack developer specializing in TypeScript and modern web technologies",
+  "tags": ["software", "technical"],
+  "sections": ["experience", "skills", "education"],
+  "emphasize": ["skills", "technical"],
+  "order": 1
+}

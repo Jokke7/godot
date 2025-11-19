@@ -1,0 +1,15 @@
+{
+  "id": "example-job",
+  "title": "Senior Full Stack Developer",
+  "company": "Tech Company",
+  "period": "2020 - Present",
+  "description": "Led development of scalable web applications serving millions of users.",
+  "tags": ["software", "technical", "leadership"],
+  "skills": ["TypeScript", "React", "Node.js", "PostgreSQL"],
+  "highlights": [
+    "Architected microservices platform reducing latency by 40%",
+    "Mentored team of 5 junior developers",
+    "Designed and implemented API gateway serving 1M+ requests/day"
+  ],
+  "order": 1
+}

@@ -1,0 +1,9 @@
+{
+  "id": "designer",
+  "title": "Product Designer",
+  "subtitle": "Creative technologist bridging design and code",
+  "tags": ["design", "creative", "ux"],
+  "sections": ["experience", "skills", "education"],
+  "emphasize": ["visual", "creative"],
+  "order": 2
+}

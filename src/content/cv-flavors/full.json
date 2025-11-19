@@ -1,0 +1,8 @@
+{
+  "id": "full",
+  "title": "Complete CV",
+  "subtitle": "Full professional history and accomplishments",
+  "tags": ["*"],
+  "sections": ["experience", "education", "skills"],
+  "order": 99
+}

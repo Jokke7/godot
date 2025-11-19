@@ -1,0 +1,21 @@
+{
+  "category": "Programming Languages",
+  "items": [
+    {
+      "name": "TypeScript",
+      "level": "expert",
+      "tags": ["software", "technical"]
+    },
+    {
+      "name": "Python",
+      "level": "advanced",
+      "tags": ["software", "technical"]
+    },
+    {
+      "name": "JavaScript",
+      "level": "expert",
+      "tags": ["software", "technical", "design"]
+    }
+  ],
+  "order": 1
+}
