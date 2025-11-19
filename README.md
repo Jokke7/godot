@@ -1,6 +1,6 @@
-# Portfolio Website
+# Godot
 
-Modern CV and portfolio website built with Astro, Tailwind CSS, and Clerk authentication.
+A personal website for code, thoughts, poetry, and creative expression. Built with Astro, Tailwind CSS, and Clerk authentication.
 
 ## 🚀 Tech Stack
 
