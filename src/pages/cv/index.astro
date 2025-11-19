@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SignedIn, SignedOut, UserButton } from '@clerk/astro/components';
+---
+
+<BaseLayout 
+  title="CV - Godot" 
+  description="Professional CV and experience"
+>
+  <Header />
+  
+  <main class="flex-1 pt-[var(--header-height)]">
+    <!-- Authenticated View -->
+    <SignedIn>
+      <section class="min-h-screen py-16">
+        <div class="container max-w-4xl">
+          <!-- User Menu in Top Right -->
+          <div class="flex justify-end mb-8">
+            <UserButton 
+              appearance={{
+                elements: {
+                  avatarBox: "w-10 h-10"
+                }
+              }}
+            />
+          </div>
+
+          <!-- CV Content -->
+          <div class="prose prose-invert max-w-none">
+            <h1 class="text-4xl font-bold mb-8 text-gradient">Curriculum Vitae</h1>
+            
+            <!-- Professional Summary -->
+            <section class="mb-12 p-6 bg-[var(--color-surface)] rounded-lg border border-[var(--color-surface-elevated)]">
+              <h2 class="text-2xl font-semibold mb-4">Professional Summary</h2>
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
+                Your professional summary goes here. This is where you describe your expertise, 
+                experience, and what makes you unique. Replace this text with your actual content.
+              </p>
+            </section>
+
+            <!-- Experience -->
+            <section class="mb-12">
+              <h2 class="text-2xl font-semibold mb-6">Experience</h2>
+              <div class="space-y-6">
+                <div class="p-6 bg-[var(--color-surface)] rounded-lg border border-[var(--color-surface-elevated)]">
+                  <h3 class="text-xl font-medium text-[var(--color-primary)]">Job Title</h3>
+                  <p class="text-[var(--color-accent)] mb-2">Company Name • 2020 - Present</p>
+                  <p class="text-[var(--color-text-secondary)]">
+                    Description of your role, responsibilities, and key achievements.
+                  </p>
+                </div>
+                
+                <div class="p-6 bg-[var(--color-surface)] rounded-lg border border-[var(--color-surface-elevated)]">
+                  <h3 class="text-xl font-medium text-[var(--color-primary)]">Previous Role</h3>
+                  <p class="text-[var(--color-accent)] mb-2">Previous Company • 2018 - 2020</p>
+                  <p class="text-[var(--color-text-secondary)]">
+                    Description of previous role and accomplishments.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Education -->
+            <section class="mb-12">
+              <h2 class="text-2xl font-semibold mb-6">Education</h2>
+              <div class="space-y-6">
+                <div class="p-6 bg-[var(--color-surface)] rounded-lg border border-[var(--color-surface-elevated)]">
+                  <h3 class="text-xl font-medium text-[var(--color-primary)]">Degree Name</h3>
+                  <p class="text-[var(--color-accent)] mb-2">University Name • 2015 - 2019</p>
+                  <p class="text-[var(--color-text-secondary)]">
+                    Relevant coursework, achievements, or honors.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Skills -->
+            <section class="mb-12">
+              <h2 class="text-2xl font-semibold mb-6">Skills</h2>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-[var(--color-primary-light)] text-[var(--color-primary)] rounded-lg border border-[var(--color-primary)]/30">JavaScript</span>
+                <span class="px-4 py-2 bg-[var(--color-primary-light)] text-[var(--color-primary)] rounded-lg border border-[var(--color-primary)]/30">TypeScript</span>
+                <span class="px-4 py-2 bg-[var(--color-primary-light)] text-[var(--color-primary)] rounded-lg border border-[var(--color-primary)]/30">Astro</span>
+                <span class="px-4 py-2 bg-[var(--color-primary-light)] text-[var(--color-primary)] rounded-lg border border-[var(--color-primary)]/30">Tailwind CSS</span>
+                <!-- Add more skills -->
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </SignedIn>
+
+    <!-- Non-Authenticated View (shouldn't see this due to middleware, but just in case) -->
+    <SignedOut>
+      <section class="min-h-[calc(100vh-var(--header-height))] flex items-center justify-center">
+        <div class="text-center">
+          <h1 class="text-3xl font-bold mb-4">Authentication Required</h1>
+          <p class="text-[var(--color-text-secondary)] mb-6">
+            You need to sign in to view this content.
+          </p>
+          <a 
+            href="/sign-in"
+            class="px-6 py-3 text-base font-medium text-white bg-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary-hover)] transition-colors duration-[var(--transition-base)] inline-block"
+          >
+            Sign In
+          </a>
+        </div>
+      </section>
+    </SignedOut>
+  </main>
+  
+  <Footer />
+</BaseLayout>

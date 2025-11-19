@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SignUp } from '@clerk/astro/components';
+---
+
+<BaseLayout 
+  title="Sign Up - Godot" 
+  description="Create an account to access protected content"
+>
+  <main class="min-h-screen flex items-center justify-center pt-[var(--header-height)] pb-12">
+    <div class="container max-w-md">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold mb-2">
+          Join <span class="text-gradient">Godot</span>
+        </h1>
+        <p class="text-[var(--color-text-secondary)]">
+          Create an account to access exclusive content
+        </p>
+      </div>
+      
+      <SignUp 
+        appearance={{
+          elements: {
+            rootBox: "mx-auto",
+            card: "bg-[var(--color-surface)] shadow-xl border border-[var(--color-surface-elevated)]"
+          }
+        }}
+      />
+    </div>
+  </main>
+</BaseLayout>
