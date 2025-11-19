@@ -38,10 +38,21 @@ const pathname = Astro.url.pathname;
           CV
         </a>
         <a 
-          href="/cv/full"
-          class="px-4 py-2 text-sm font-medium text-white bg-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary-hover)] transition-colors duration-[var(--transition-base)]"
+          href="/blog" 
+          class:list={[
+            "text-sm font-medium transition-colors duration-[var(--transition-base)]",
+            pathname.startsWith("/blog") 
+              ? "text-[var(--color-primary)]" 
+              : "text-[var(--color-text-secondary)] hover:text-[var(--color-text)]"
+          ]}
         >
-          View CV
+          Blog
+        </a>
+        <a 
+          href="/poem"
+          class="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] rounded-lg hover:opacity-90 transition-opacity duration-[var(--transition-base)] shadow-lg"
+        >
+          Daily Poem
         </a>
       </div>
       
@@ -76,10 +87,16 @@ const pathname = Astro.url.pathname;
           CV
         </a>
         <a 
-          href="/cv/full"
-          class="px-4 py-2 text-sm font-medium text-center text-white bg-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary-hover)] transition-colors"
+          href="/blog" 
+          class="text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors"
         >
-          View CV
+          Blog
+        </a>
+        <a 
+          href="/poem"
+          class="px-4 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] rounded-lg hover:opacity-90 transition-opacity shadow-lg"
+        >
+          Daily Poem
         </a>
       </div>
     </div>
