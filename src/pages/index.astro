@@ -2,12 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Starfield from '../components/Starfield.astro';
 ---
 
 <BaseLayout 
   title="Home | Portfolio" 
   description="Welcome to my professional portfolio and CV"
 >
+  <Starfield />
   <Header />
   
   <main class="flex-1 pt-[var(--header-height)]">
