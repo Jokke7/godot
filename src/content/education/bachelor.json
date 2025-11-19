@@ -1,0 +1,13 @@
+{
+  "id": "bachelor-degree",
+  "degree": "Bachelor of Science in Computer Science",
+  "institution": "University Name",
+  "period": "2015-2019",
+  "description": "Major in Computer Science with focus on software engineering and design",
+  "tags": ["software", "design"],
+  "achievements": [
+    "Graduated with honors",
+    "Dean's List for academic excellence"
+  ],
+  "order": 1
+}

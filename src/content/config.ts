@@ -70,6 +70,18 @@ const skills = defineCollection({
   }),
 });
 
+// CV Extracurricular Activities - JSON data
+const extracurricular = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    organization: z.string(),
+    period: z.string(),
+    description: z.string(),
+    tags: z.array(z.string()).optional(),
+  }),
+});
+
 // CV Flavors configuration - JSON data
 const cvFlavors = defineCollection({
   type: 'data',
@@ -89,6 +101,7 @@ export const collections = {
   poems,
   experience,
   education,
+  extracurricular,
   skills,
   'cv-flavors': cvFlavors,
 };
