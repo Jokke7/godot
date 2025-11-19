@@ -27,7 +27,7 @@ const pathname = Astro.url.pathname;
           Home
         </a>
         <a 
-          href="/cv" 
+          href="/cv/full" 
           class:list={[
             "text-sm font-medium transition-colors duration-[var(--transition-base)]",
             pathname.startsWith("/cv") 
@@ -38,10 +38,10 @@ const pathname = Astro.url.pathname;
           CV
         </a>
         <a 
-          href="/cv"
+          href="/cv/full"
           class="px-4 py-2 text-sm font-medium text-white bg-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary-hover)] transition-colors duration-[var(--transition-base)]"
         >
-          Get in Touch
+          View CV
         </a>
       </div>
       
@@ -70,16 +70,16 @@ const pathname = Astro.url.pathname;
           Home
         </a>
         <a 
-          href="/cv" 
+          href="/cv/full" 
           class="text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors"
         >
           CV
         </a>
         <a 
-          href="/cv"
+          href="/cv/full"
           class="px-4 py-2 text-sm font-medium text-center text-white bg-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary-hover)] transition-colors"
         >
-          Get in Touch
+          View CV
         </a>
       </div>
     </div>
