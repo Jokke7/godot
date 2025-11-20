@@ -8,9 +8,13 @@ const pathname = Astro.url.pathname;
       <!-- Logo -->
       <a 
         href="/" 
-        class="text-xl font-bold hover:opacity-80 transition-opacity duration-[var(--transition-base)] flex items-center gap-1"
+        class="hover:opacity-80 transition-opacity duration-[var(--transition-base)] flex items-center"
       >
-        <span class="text-2xl text-gradient font-extrabold">G</span><span class="text-[var(--color-text)]">odot</span>
+        <img 
+          src="/images/godot_logo.svg" 
+          alt="Godot" 
+          class="h-8 w-auto"
+        />
       </a>
       
       <!-- Desktop Navigation -->
@@ -50,7 +54,7 @@ const pathname = Astro.url.pathname;
         </a>
         <a 
           href="/poem"
-          class="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] rounded-lg hover:opacity-90 transition-opacity duration-[var(--transition-base)] shadow-lg"
+          class="px-4 py-2 text-sm font-bold uppercase text-[var(--color-primary)] border-2 border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all duration-[var(--transition-base)]"
         >
           Daily Poem
         </a>
@@ -94,7 +98,7 @@ const pathname = Astro.url.pathname;
         </a>
         <a 
           href="/poem"
-          class="px-4 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] rounded-lg hover:opacity-90 transition-opacity shadow-lg"
+          class="px-4 py-2 text-sm font-bold uppercase text-center text-[var(--color-primary)] border-2 border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all"
         >
           Daily Poem
         </a>
