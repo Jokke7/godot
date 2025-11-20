@@ -26,6 +26,9 @@ pnpm-debug.log*
 # local AI assistant rules
 .cursorrules
 
-# local development notes
+# local development notes (never tracked)
 INSPECTION_REPORT.md
 TODO.md
+PROGRESS.md
+PROGRESS_README.md
+scripts/progress.sh
