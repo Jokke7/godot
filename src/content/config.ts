@@ -10,6 +10,8 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
     category: z.enum(['philosophy', 'tech', 'personal', 'other']).default('other'),
+    coverImage: z.string().optional(), // Path to cover image
+    coverAlt: z.string().optional(), // Alt text for cover image
   }),
 });
 

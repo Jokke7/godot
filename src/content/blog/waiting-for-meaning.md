@@ -5,6 +5,8 @@ date: 2025-11-19
 tags: ["philosophy", "existentialism"]
 category: "philosophy"
 draft: false
+coverImage: "/images/blog/placeholder-blog.png"
+coverAlt: "Abstract visual representation"
 ---
 
 # Waiting for Meaning
