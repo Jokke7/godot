@@ -1,0 +1,268 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+// Get all published poems sorted by date
+const allPoems = (await getCollection('poems', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Get the date from the URL parameter
+const { date } = Astro.params;
+
+// Find the poem matching this date
+const poem = allPoems.find(p => {
+  const poemDate = p.data.date.toISOString().split('T')[0]; // YYYY-MM-DD
+  return poemDate === date;
+});
+
+// If no poem found, return 404
+if (!poem) {
+  return Astro.redirect('/404');
+}
+
+const { Content } = await poem.render();
+
+// Find current poem index for navigation
+const currentIndex = allPoems.findIndex(p => p === poem);
+
+// Navigation info
+const hasPrev = currentIndex > 0;
+const hasNext = currentIndex < allPoems.length - 1;
+const prevPoem = hasPrev ? allPoems[currentIndex - 1] : null;
+const nextPoem = hasNext ? allPoems[currentIndex + 1] : null;
+
+// Helper to format date as YYYY-MM-DD
+const formatDate = (date: Date) => date.toISOString().split('T')[0];
+---
+
+<BaseLayout 
+  title={`${poem.data.title} - Godot`}
+  description={`A poem by Godot - ${poem.data.mood || 'daily poem'}`}
+>
+  <Header />
+  
+  <main class="flex-1 pt-[var(--header-height)] poem-page">
+    <section class="min-h-[calc(100vh-var(--header-height))] flex items-center justify-center py-16 px-4">
+      <!-- Poem Frame -->
+      <article class="poem-frame">
+        <div class="poem-content">
+          <h1 class="poem-title">{poem.data.title}</h1>
+          <time class="poem-date" datetime={poem.data.date.toISOString()}>
+            {poem.data.date.toLocaleDateString('en-US', { 
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric' 
+            })}
+          </time>
+          {poem.data.mood && (
+            <p class="poem-mood">— {poem.data.mood} —</p>
+          )}
+          <div class="poem-body">
+            <Content />
+          </div>
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <nav class="poem-navigation">
+          {hasPrev && prevPoem && (
+            <a 
+              href={`/poem/${formatDate(prevPoem.data.date)}`} 
+              class="nav-arrow nav-prev"
+              aria-label="Previous poem"
+              title="Previous poem (←)"
+            >
+              ‹
+            </a>
+          )}
+          {hasNext && nextPoem && (
+            <a 
+              href={`/poem/${formatDate(nextPoem.data.date)}`} 
+              class="nav-arrow nav-next"
+              aria-label="Next poem"
+              title="Next poem (→)"
+            >
+              ›
+            </a>
+          )}
+        </nav>
+      </article>
+    </section>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .poem-page {
+    background: #1a1a1a;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+  }
+
+  .poem-frame {
+    position: relative;
+    max-width: 650px;
+    width: 100%;
+    background: #f9f7f4;
+    border: 1px solid #d4d0c8;
+    box-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.1),
+      0 8px 16px rgba(0, 0, 0, 0.15),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    padding: 3rem 2.5rem;
+    
+    /* Subtle paper texture */
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.015) 2px,
+        rgba(0, 0, 0, 0.015) 3px
+      );
+  }
+
+  .poem-content {
+    text-align: center;
+    color: #2a2a2a;
+  }
+
+  .poem-title {
+    font-family: 'Garamond', 'Georgia', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0 0 0.5rem 0;
+    color: #1a1a1a;
+    letter-spacing: 0.02em;
+  }
+
+  .poem-date {
+    display: block;
+    font-family: 'Georgia', serif;
+    font-size: 0.875rem;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .poem-mood {
+    font-family: 'Georgia', serif;
+    font-size: 0.8rem;
+    color: #888;
+    font-style: italic;
+    margin: 0.5rem 0 2rem 0;
+    letter-spacing: 0.1em;
+  }
+
+  .poem-body {
+    margin-top: 2rem;
+    font-family: 'Garamond', 'Georgia', serif;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #2a2a2a;
+  }
+
+  /* Remove default heading from markdown */
+  .poem-body :global(h2) {
+    display: none;
+  }
+
+  .poem-body :global(p) {
+    margin: 1.5rem 0;
+    white-space: pre-line;
+  }
+
+  .poem-body :global(pre) {
+    font-family: 'Garamond', 'Georgia', serif;
+    background: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    white-space: pre-line;
+    text-align: center;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #2a2a2a;
+  }
+
+  /* Navigation */
+  .poem-navigation {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .nav-arrow {
+    position: absolute;
+    pointer-events: all;
+    font-size: 3rem;
+    color: #888;
+    text-decoration: none;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif;
+    line-height: 1;
+  }
+
+  .nav-arrow:hover {
+    color: #2a2a2a;
+    transform: scale(1.2);
+  }
+
+  .nav-prev {
+    left: -3rem;
+  }
+
+  .nav-next {
+    right: -3rem;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .poem-frame {
+      padding: 2rem 1.5rem;
+      margin: 0 1rem;
+    }
+
+    .poem-title {
+      font-size: 1.5rem;
+    }
+
+    .poem-body {
+      font-size: 1rem;
+    }
+
+    .nav-arrow {
+      font-size: 2rem;
+      padding: 0.5rem;
+    }
+
+    .nav-prev {
+      left: -1rem;
+    }
+
+    .nav-next {
+      right: -1rem;
+    }
+  }
+</style>
+
+<script>
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      const prevLink = document.querySelector('.nav-prev') as HTMLAnchorElement;
+      if (prevLink) {
+        prevLink.click();
+      }
+    } else if (e.key === 'ArrowRight') {
+      const nextLink = document.querySelector('.nav-next') as HTMLAnchorElement;
+      if (nextLink) {
+        nextLink.click();
+      }
+    }
+  });
+</script>

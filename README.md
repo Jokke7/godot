@@ -1,39 +1,33 @@
 # Godot
 
-A personal website for code, thoughts, poetry, and creative expression. Built with Astro, Tailwind CSS, and Clerk authentication.
+Personal website for code, thoughts, poetry, and CV.
 
-## 🚀 Tech Stack
+## Architecture
 
-- **Astro** v5.7+ - Content-first web framework
-- **Tailwind CSS** v4 - Utility-first CSS  
-- **Clerk** - Authentication
-- **TypeScript** (strict mode)
-- **Node.js** 18+
+**Stack:** Astro v5 + Tailwind CSS v4 + Clerk authentication + TypeScript
 
-## 🛠️ Setup
+**Structure:**
+- `src/pages/` - File-based routing (index, CV, blog, poems)
+- `src/components/` - Reusable UI components (Header, Footer, Starfield)
+- `src/layouts/` - Page layouts (BaseLayout with favicon support)
+- `src/content/` - Content collections (blog, poems, experience, education, skills, extracurricular, cv-flavors)
+- `src/lib/` - Utilities (cv.ts for CV data filtering)
+- `src/middleware.ts` - Clerk auth protection for /cv routes
 
-```bash
-npm install
-cp .env.example .env.local
-# Add Clerk keys to .env.local
-npm run dev
-```
+**Content Collections:**
+- Blog posts and poems use `type: 'content'` (Markdown)
+- CV data uses `type: 'data'` (JSON/YAML)
+- CV flavors filter content by tags (e.g., "software-engineer", "designer", "full")
 
-## 📝 Commands
+**Authentication:**
+- `/cv/*` routes protected by Clerk middleware
+- Other routes public
 
-- `npm run dev` - Start dev server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
+**Styling:**
+- CSS custom properties in `src/styles/global.css`
+- CV section uses standard layout
+- Blog and poems will have distinct styling
 
-## 🔄 Git Workflow
-
-**Branches:**
-- `main` - Production
-- `dev` - Development  
-- `feature/*` - Features
-
-**Commit format:** `feat: description` | `fix: description` | `docs: description`
-
-## 🔗 Links
-
-Repository: https://github.com/Jokke7/godot
+**Favicons:**
+- Main site: `/images/favicon.png`
+- CV section: `/images/favicon_cv.svg`

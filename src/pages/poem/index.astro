@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+
+// Get the latest published poem
+const allPoems = (await getCollection('poems', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+if (allPoems.length === 0) {
+  return Astro.redirect('/404');
+}
+
+// Get the latest poem's date in YYYY-MM-DD format
+const latestPoem = allPoems[0];
+const latestDate = latestPoem.data.date.toISOString().split('T')[0];
+
+// Redirect to the latest poem
+return Astro.redirect(`/poem/${latestDate}`);
+---

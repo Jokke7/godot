@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # local AI assistant rules
 .cursorrules
+
+# local development notes
+INSPECTION_REPORT.md
+TODO.md
