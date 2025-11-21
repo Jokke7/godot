@@ -45,21 +45,20 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
   <Header />
   
   <main class="flex-1 pt-[var(--header-height)] poem-page">
-    <section class="min-h-[calc(100vh-var(--header-height))] flex items-center justify-center py-16 px-4">
-      <!-- Poem Frame -->
-      <article class="poem-frame">
-        <div class="poem-content">
+    <section class="min-h-[calc(100vh-var(--header-height))] flex flex-col items-center justify-center py-12 px-4">
+      <!-- Date (above chalkboard) -->
+      <time class="poem-date-top" datetime={poem.data.date.toISOString()}>
+        {poem.data.date.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        })}
+      </time>
+      
+      <!-- Chalkboard -->
+      <article class="chalkboard">
+        <div class="chalkboard-content">
           <h1 class="poem-title">{poem.data.title}</h1>
-          <time class="poem-date" datetime={poem.data.date.toISOString()}>
-            {poem.data.date.toLocaleDateString('en-US', { 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
-            })}
-          </time>
-          {poem.data.mood && (
-            <p class="poem-mood">— {poem.data.mood} —</p>
-          )}
           <div class="poem-body">
             <Content />
           </div>
@@ -96,72 +95,70 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
 </BaseLayout>
 
 <style>
+  /* Load custom font */
+  @font-face {
+    font-family: 'Rudiment';
+    src: url('/fonts/Rudiment.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
   .poem-page {
     background: #1a1a1a;
-    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
   }
 
-  .poem-frame {
-    position: relative;
-    max-width: 650px;
-    width: 100%;
-    background: #f9f7f4;
-    border: 1px solid #d4d0c8;
-    box-shadow: 
-      0 2px 4px rgba(0, 0, 0, 0.1),
-      0 8px 16px rgba(0, 0, 0, 0.15),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-    padding: 3rem 2.5rem;
-    
-    /* Subtle paper texture */
-    background-image: 
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.015) 2px,
-        rgba(0, 0, 0, 0.015) 3px
-      );
-  }
-
-  .poem-content {
-    text-align: center;
-    color: #2a2a2a;
-  }
-
-  .poem-title {
-    font-family: 'Garamond', 'Georgia', serif;
-    font-size: 2rem;
-    font-weight: 400;
-    margin: 0 0 0.5rem 0;
-    color: #1a1a1a;
-    letter-spacing: 0.02em;
-  }
-
-  .poem-date {
+  /* Date above chalkboard */
+  .poem-date-top {
     display: block;
     font-family: 'Georgia', serif;
     font-size: 0.875rem;
-    color: #666;
+    color: var(--color-text-secondary);
     font-style: italic;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
   }
 
-  .poem-mood {
-    font-family: 'Georgia', serif;
-    font-size: 0.8rem;
-    color: #888;
-    font-style: italic;
-    margin: 0.5rem 0 2rem 0;
-    letter-spacing: 0.1em;
+  /* Chalkboard */
+  .chalkboard {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 2/3;
+    background-image: url('/images/poems/chalk_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 
+      0 8px 16px rgba(0, 0, 0, 0.4),
+      0 16px 32px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2.5rem;
+  }
+
+  .chalkboard-content {
+    text-align: center;
+    max-width: 90%;
+    width: 100%;
+  }
+
+  .poem-title {
+    font-family: 'Rudiment', cursive, sans-serif;
+    font-size: 2.75rem;
+    font-weight: normal;
+    margin: 0 0 2.5rem 0;
+    color: #f5f5f0;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
   }
 
   .poem-body {
-    margin-top: 2rem;
-    font-family: 'Garamond', 'Georgia', serif;
-    font-size: 1.125rem;
-    line-height: 1.8;
-    color: #2a2a2a;
+    font-family: 'Rudiment', cursive, sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.9;
+    color: #f5f5f0;
   }
 
   /* Remove default heading from markdown */
@@ -174,16 +171,27 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
     white-space: pre-line;
   }
 
+  /* Code blocks (indented poetry) - render directly on chalkboard */
   .poem-body :global(pre) {
-    font-family: 'Garamond', 'Georgia', serif;
-    background: none;
+    font-family: 'Rudiment', cursive, sans-serif;
+    background: transparent !important;
+    border: none !important;
     padding: 0;
     margin: 1.5rem 0;
     white-space: pre-line;
     text-align: center;
-    font-size: 1.125rem;
-    line-height: 1.8;
-    color: #2a2a2a;
+    font-size: 1.5rem;
+    line-height: 1.9;
+    color: #f5f5f0;
+  }
+
+  .poem-body :global(code) {
+    font-family: 'Rudiment', cursive, sans-serif !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    font-size: inherit !important;
+    color: #f5f5f0 !important;
   }
 
   /* Navigation */
@@ -199,54 +207,94 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
   .nav-arrow {
     position: absolute;
     pointer-events: all;
-    font-size: 3rem;
-    color: #888;
+    font-size: 3.5rem;
+    color: #f5f5f0;
     text-decoration: none;
-    padding: 1rem;
+    padding: 1.5rem;
     transition: all 0.3s ease;
     font-family: 'Georgia', serif;
     line-height: 1;
+    opacity: 0.6;
   }
 
   .nav-arrow:hover {
-    color: #2a2a2a;
-    transform: scale(1.2);
+    opacity: 1;
+    transform: scale(1.15);
   }
 
   .nav-prev {
-    left: -3rem;
+    left: -3.5rem;
   }
 
   .nav-next {
-    right: -3rem;
+    right: -3.5rem;
   }
 
   /* Mobile responsiveness */
-  @media (max-width: 768px) {
-    .poem-frame {
-      padding: 2rem 1.5rem;
-      margin: 0 1rem;
-    }
-
-    .poem-title {
-      font-size: 1.5rem;
-    }
-
-    .poem-body {
-      font-size: 1rem;
-    }
-
-    .nav-arrow {
-      font-size: 2rem;
-      padding: 0.5rem;
-    }
-
+  @media (max-width: 1024px) {
     .nav-prev {
-      left: -1rem;
+      left: -2rem;
     }
 
     .nav-next {
-      right: -1rem;
+      right: -2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .chalkboard {
+      max-width: 95%;
+      padding: 2.5rem 2rem;
+    }
+
+    .chalkboard-content {
+      max-width: 95%;
+    }
+
+    .poem-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .poem-body {
+      font-size: 1.25rem;
+      line-height: 1.8;
+    }
+
+    .poem-body :global(pre) {
+      font-size: 1.25rem;
+    }
+
+    .nav-arrow {
+      font-size: 2.5rem;
+      padding: 1rem;
+    }
+
+    .nav-prev {
+      left: -0.5rem;
+    }
+
+    .nav-next {
+      right: -0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .poem-date-top {
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .chalkboard {
+      padding: 2rem 1.5rem;
+    }
+
+    .poem-title {
+      font-size: 1.75rem;
+    }
+
+    .poem-body {
+      font-size: 1.1rem;
     }
   }
 </style>
