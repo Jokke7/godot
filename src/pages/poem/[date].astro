@@ -254,17 +254,22 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
     }
 
     .poem-title {
-      font-size: 2rem;
-      margin-bottom: 2rem;
+      font-size: 1.75rem;
+      margin-bottom: 1.75rem;
     }
 
     .poem-body {
-      font-size: 1.25rem;
-      line-height: 1.8;
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
     .poem-body :global(pre) {
-      font-size: 1.25rem;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .poem-body :global(p) {
+      margin: 1.25rem 0;
     }
 
     .nav-arrow {
@@ -292,11 +297,21 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
     }
 
     .poem-title {
-      font-size: 1.75rem;
+      font-size: 1.5rem;
     }
 
     .poem-body {
-      font-size: 1.1rem;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .poem-body :global(pre) {
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .poem-body :global(p) {
+      margin: 1rem 0;
     }
   }
 </style>
