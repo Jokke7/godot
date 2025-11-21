@@ -4,8 +4,8 @@ Place all blog-related images here.
 
 ## Image Specs
 
-**Cover Images (placeholder-blog.jpg and post covers)**
-- Resolution: **1600x900px** (16:9 ratio)
+**Cover Images (placeholder-blog.png and post covers)**
+- Resolution: **1200x800px** (3:2 ratio)
 - Format: JPG for photos, PNG for graphics
 - Quality: 75-85% compression
 - Max size: 300KB

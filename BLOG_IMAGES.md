@@ -73,9 +73,9 @@ public/
 ### Ideal Resolutions
 
 **Cover Images (Blog Listing & Post Hero)**
-- **Resolution**: 1600x900px (16:9 ratio)
-- **Why**: Looks great on all screens, 16:9 is web-standard
-- **Alternative**: 1920x1080px (if you want extra sharp)
+- **Resolution**: 1200x800px (3:2 ratio)
+- **Why**: Perfect for side-by-side layout, classic photo ratio
+- **Alternative**: 1800x1200px (if you want extra sharp on retina)
 - **Format**: JPG (photos), PNG (graphics/screenshots)
 - **Quality**: 75-85% compression for JPG
 - **File size**: Keep under 300KB
@@ -88,9 +88,9 @@ public/
 
 ### Quick Reference
 ```
-Cover images:  1600x900px  (16:9) - JPG, <300KB
-Content images: 1200px wide      - JPG/PNG, <200KB
-Placeholder:    1600x900px  (same as cover)
+Cover images:  1200x800px  (3:2) - JPG, <300KB
+Content images: 1200px wide     - JPG/PNG, <200KB
+Placeholder:    1200x800px  (same as cover)
 ```
 
 ## Placeholder Images
