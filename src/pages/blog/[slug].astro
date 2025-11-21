@@ -19,10 +19,10 @@ const { Content } = await post.render();
 
 // Category colors
 const categoryColors: Record<string, string> = {
-  'philosophy': '#6366f1',
   'tech': '#06b6d4',
   'personal': '#8b5cf6',
-  'other': '#9898b0'
+  'culture': '#6366f1',
+  'politics': '#9898b0'
 };
 
 const categoryColor = categoryColors[post.data.category] || categoryColors.other;

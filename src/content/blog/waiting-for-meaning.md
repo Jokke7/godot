@@ -3,7 +3,7 @@ title: "Waiting for Meaning"
 description: "Reflections on purpose and the act of waiting"
 date: 2025-11-19
 tags: ["philosophy", "existentialism"]
-category: "philosophy"
+category: "culture"
 draft: false
 coverImage: "/images/blog/placeholder-blog.png"
 coverAlt: "Abstract visual representation"

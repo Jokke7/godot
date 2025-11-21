@@ -10,10 +10,10 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
 
 // Category colors for accent blocks
 const categoryColors: Record<string, string> = {
-  'philosophy': '#6366f1',
   'tech': '#06b6d4',
   'personal': '#8b5cf6',
-  'other': '#9898b0'
+  'culture': '#6366f1',
+  'politics': '#9898b0'
 };
 ---
 
@@ -40,9 +40,8 @@ const categoryColors: Record<string, string> = {
     <section class="py-16 px-4">
       <div class="container max-w-4xl">
         <div class="space-y-12">
-          {allPosts.map((post, index) => {
-            const categoryColor = categoryColors[post.data.category] || categoryColors.other;
-            const isEven = index % 2 === 0;
+          {allPosts.map((post) => {
+            const categoryColor = categoryColors[post.data.category] || categoryColors.politics;
             
             return (
               <article class="blog-post-card group">
@@ -101,7 +100,7 @@ const categoryColors: Record<string, string> = {
                 <!-- Bold Separator -->
                 <div 
                   class="h-1 mt-12"
-                  style={`background-color: ${isEven ? categoryColor : 'var(--color-surface-elevated)'}`}
+                  style={`background-color: ${categoryColor}`}
                 />
               </article>
             );
