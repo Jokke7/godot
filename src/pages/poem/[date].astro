@@ -27,11 +27,12 @@ const { Content } = await poem.render();
 // Find current poem index for navigation
 const currentIndex = allPoems.findIndex(p => p === poem);
 
-// Navigation info
-const hasPrev = currentIndex > 0;
-const hasNext = currentIndex < allPoems.length - 1;
-const prevPoem = hasPrev ? allPoems[currentIndex - 1] : null;
-const nextPoem = hasNext ? allPoems[currentIndex + 1] : null;
+// Navigation info (swapped for intuitive direction)
+// Right arrow = newer (lower index), Left arrow = older (higher index)
+const hasNewer = currentIndex > 0;
+const hasOlder = currentIndex < allPoems.length - 1;
+const newerPoem = hasNewer ? allPoems[currentIndex - 1] : null;
+const olderPoem = hasOlder ? allPoems[currentIndex + 1] : null;
 
 // Helper to format date as YYYY-MM-DD
 const formatDate = (date: Date) => date.toISOString().split('T')[0];
@@ -66,22 +67,22 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
         
         <!-- Navigation Arrows -->
         <nav class="poem-navigation">
-          {hasPrev && prevPoem && (
+          {hasOlder && olderPoem && (
             <a 
-              href={`/poem/${formatDate(prevPoem.data.date)}`} 
+              href={`/poem/${formatDate(olderPoem.data.date)}`} 
               class="nav-arrow nav-prev"
-              aria-label="Previous poem"
-              title="Previous poem (←)"
+              aria-label="Older poem"
+              title="Older poem (←)"
             >
               ‹
             </a>
           )}
-          {hasNext && nextPoem && (
+          {hasNewer && newerPoem && (
             <a 
-              href={`/poem/${formatDate(nextPoem.data.date)}`} 
+              href={`/poem/${formatDate(newerPoem.data.date)}`} 
               class="nav-arrow nav-next"
-              aria-label="Next poem"
-              title="Next poem (→)"
+              aria-label="Newer poem"
+              title="Newer poem (→)"
             >
               ›
             </a>
@@ -252,16 +253,17 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
 
 <script>
   // Keyboard navigation
+  // Left = older, Right = newer (intuitive direction)
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
-      const prevLink = document.querySelector('.nav-prev') as HTMLAnchorElement;
-      if (prevLink) {
-        prevLink.click();
+      const olderLink = document.querySelector('.nav-prev') as HTMLAnchorElement;
+      if (olderLink) {
+        olderLink.click();
       }
     } else if (e.key === 'ArrowRight') {
-      const nextLink = document.querySelector('.nav-next') as HTMLAnchorElement;
-      if (nextLink) {
-        nextLink.click();
+      const newerLink = document.querySelector('.nav-next') as HTMLAnchorElement;
+      if (newerLink) {
+        newerLink.click();
       }
     }
   });
