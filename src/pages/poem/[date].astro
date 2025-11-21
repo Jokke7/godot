@@ -95,11 +95,18 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
 </BaseLayout>
 
 <style>
-  /* Load custom font */
+  /* Load custom fonts - Whatever it takes (regular and bold) */
   @font-face {
-    font-family: 'Rudiment';
-    src: url('/fonts/Rudiment.ttf') format('truetype');
-    font-weight: normal;
+    font-family: 'Whatever it takes';
+    src: url('/fonts/whatever it takes.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Whatever it takes';
+    src: url('/fonts/whatever it takes bold.ttf') format('truetype');
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
   }
@@ -145,9 +152,9 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
   }
 
   .poem-title {
-    font-family: 'Rudiment', cursive, sans-serif;
-    font-size: 2.75rem;
-    font-weight: normal;
+    font-family: 'Whatever it takes', system-ui, sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
     margin: 0 0 2.5rem 0;
     color: #f5f5f0;
     letter-spacing: 0.02em;
@@ -155,7 +162,7 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
   }
 
   .poem-body {
-    font-family: 'Rudiment', cursive, sans-serif;
+    font-family: 'Whatever it takes', system-ui, sans-serif;
     font-size: 1.5rem;
     line-height: 1.9;
     color: #f5f5f0;
@@ -163,7 +170,7 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
 
   /* Remove default heading from markdown */
   .poem-body :global(h2) {
-    display: none;
+    display: None;
   }
 
   .poem-body :global(p) {
@@ -173,7 +180,7 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
 
   /* Code blocks (indented poetry) - render directly on chalkboard */
   .poem-body :global(pre) {
-    font-family: 'Rudiment', cursive, sans-serif;
+    font-family: 'Whatever it takes', system-ui, sans-serif;
     background: transparent !important;
     border: none !important;
     padding: 0;
@@ -186,7 +193,7 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
   }
 
   .poem-body :global(code) {
-    font-family: 'Rudiment', cursive, sans-serif !important;
+    font-family: 'Whatever it takes', system-ui, sans-serif !important;
     background: transparent !important;
     border: none !important;
     padding: 0 !important;
