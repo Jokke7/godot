@@ -1,5 +1,5 @@
 {
-  "name": "--typescript",
+  "name": "godot",
   "type": "module",
   "version": "0.0.1",
   "scripts": {

@@ -3,18 +3,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
+import { getCategoryColor } from '../../lib/constants';
 
 // Get all published blog posts sorted by date
 const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-// Category colors for accent blocks
-const categoryColors: Record<string, string> = {
-  'tech': '#06b6d4',
-  'personal': '#8b5cf6',
-  'culture': '#6366f1',
-  'politics': '#9898b0'
-};
 ---
 
 <BaseLayout 
@@ -44,7 +37,7 @@ const categoryColors: Record<string, string> = {
           <article class="blog-post-card group mb-16">
             {(() => {
               const post = allPosts[0];
-              const categoryColor = categoryColors[post.data.category] || categoryColors.politics;
+              const categoryColor = getCategoryColor(post.data.category);
               return (
                 <>
                   <!-- Category Tag with Bold Color -->
@@ -114,7 +107,7 @@ const categoryColors: Record<string, string> = {
         {allPosts.length > 1 && (
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {allPosts.slice(1).map((post) => {
-              const categoryColor = categoryColors[post.data.category] || categoryColors.politics;
+              const categoryColor = getCategoryColor(post.data.category);
               
               return (
                 <article class="blog-post-card group">

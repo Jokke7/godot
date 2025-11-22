@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
+import { getCategoryColor } from '../../lib/constants';
 
 // Get all published blog posts
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
@@ -17,15 +18,7 @@ if (!post) {
 
 const { Content } = await post.render();
 
-// Category colors
-const categoryColors: Record<string, string> = {
-  'tech': '#06b6d4',
-  'personal': '#8b5cf6',
-  'culture': '#6366f1',
-  'politics': '#9898b0'
-};
-
-const categoryColor = categoryColors[post.data.category] || categoryColors.other;
+const categoryColor = getCategoryColor(post.data.category);
 ---
 
 <BaseLayout 

@@ -2,7 +2,7 @@
 const pathname = Astro.url.pathname;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-[var(--color-background)]/80 backdrop-blur-lg border-b border-[var(--color-surface)]">
+<header class="fixed top-0 left-0 right-0 z-50 bg-[var(--color-background)]/60 backdrop-blur-lg border-b border-[var(--color-surface)]">
   <nav class="container" style="height: var(--header-height);">
     <div class="flex items-center justify-between h-full">
       <!-- Logo -->
@@ -13,7 +13,7 @@ const pathname = Astro.url.pathname;
         <img 
           src="/images/godot_logo.svg" 
           alt="Godot" 
-          class="h-8 w-auto"
+          class="h-10 w-auto"
         />
       </a>
       
@@ -22,7 +22,7 @@ const pathname = Astro.url.pathname;
         <a 
           href="/" 
           class:list={[
-            "text-sm font-medium transition-colors duration-[var(--transition-base)]",
+            "text-base font-medium transition-colors duration-[var(--transition-base)]",
             pathname === "/" 
               ? "text-[var(--color-primary)]" 
               : "text-[var(--color-text-secondary)] hover:text-[var(--color-text)]"
@@ -33,7 +33,7 @@ const pathname = Astro.url.pathname;
         <a 
           href="/cv/full" 
           class:list={[
-            "text-sm font-medium transition-colors duration-[var(--transition-base)]",
+            "text-base font-medium transition-colors duration-[var(--transition-base)]",
             pathname.startsWith("/cv") 
               ? "text-[var(--color-primary)]" 
               : "text-[var(--color-text-secondary)] hover:text-[var(--color-text)]"
@@ -44,7 +44,7 @@ const pathname = Astro.url.pathname;
         <a 
           href="/blog" 
           class:list={[
-            "text-sm font-medium transition-colors duration-[var(--transition-base)]",
+            "text-base font-medium transition-colors duration-[var(--transition-base)]",
             pathname.startsWith("/blog") 
               ? "text-[var(--color-primary)]" 
               : "text-[var(--color-text-secondary)] hover:text-[var(--color-text)]"
@@ -54,9 +54,14 @@ const pathname = Astro.url.pathname;
         </a>
         <a 
           href="/poem"
-          class="px-4 py-2 text-sm font-bold uppercase text-[var(--color-primary)] border-2 border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all duration-[var(--transition-base)]"
+          class="vibe-sticker"
+          aria-label="Daily Poem"
         >
-          Daily Poem
+          <img 
+            src="/images/nav_vibe.png" 
+            alt="Daily Poem" 
+            class="vibe-image"
+          />
         </a>
       </div>
       
@@ -80,27 +85,32 @@ const pathname = Astro.url.pathname;
       <div class="container py-4 flex flex-col gap-4">
         <a 
           href="/" 
-          class="text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors"
+          class="text-base font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors"
         >
           Home
         </a>
         <a 
           href="/cv/full" 
-          class="text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors"
+          class="text-base font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors"
         >
           CV
         </a>
         <a 
           href="/blog" 
-          class="text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors"
+          class="text-base font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors"
         >
           Blog
         </a>
         <a 
           href="/poem"
-          class="px-4 py-2 text-sm font-bold uppercase text-center text-[var(--color-primary)] border-2 border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all"
+          class="block"
+          aria-label="Daily Poem"
         >
-          Daily Poem
+          <img 
+            src="/images/nav_vibe.png" 
+            alt="Daily Poem" 
+            class="w-24 mx-auto hover:opacity-80 transition-opacity"
+          />
         </a>
       </div>
     </div>
@@ -131,3 +141,36 @@ const pathname = Astro.url.pathname;
     }
   });
 </script>
+
+<style>
+  .vibe-sticker {
+    position: relative;
+    display: block;
+    z-index: 60;
+  }
+
+  .vibe-image {
+    width: 120px;
+    height: auto;
+    transform: rotate(-8deg);
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  }
+
+  .vibe-sticker:hover .vibe-image {
+    transform: rotate(-8deg) scale(1.1);
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+  }
+
+  /* Mobile: smaller and less tilted */
+  @media (max-width: 768px) {
+    .vibe-image {
+      width: 80px;
+      transform: rotate(-5deg);
+    }
+
+    .vibe-sticker:hover .vibe-image {
+      transform: rotate(-5deg) scale(1.05);
+    }
+  }
+</style>
