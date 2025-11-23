@@ -9,10 +9,24 @@ const isProtectedRoute = createRouteMatcher([
 ]);
 
 export const onRequest = clerkMiddleware((auth, context) => {
-  const { redirectToSignIn, userId } = auth();
-  
-  // If user is not authenticated and trying to access protected route
-  if (!userId && isProtectedRoute(context.request)) {
-    return redirectToSignIn();
+  try {
+    const { redirectToSignIn, userId } = auth();
+    
+    // Log successful auth check to prove we got this far
+    console.log(`Middleware Check: UserID=${userId}, Path=${context.url.pathname}`);
+
+    if (!userId && isProtectedRoute(context.request)) {
+      return redirectToSignIn();
+    }
+  } catch (error) {
+    // This catches the crash and prints the REAL error to the Cloudflare logs
+    console.error("CRITICAL MIDDLEWARE ERROR:", JSON.stringify(error, Object.getOwnPropertyNames(error)));
+    
+    // This prints the error to the browser screen so you can see it
+    return new Response(JSON.stringify({
+      message: "Middleware Crashed",
+      error: error instanceof Error ? error.message : error,
+      stack: error instanceof Error ? error.stack : "No stack"
+    }, null, 2), { status: 500 });
   }
 });
