@@ -11,8 +11,7 @@ const isProtectedRoute = createRouteMatcher([
 export const onRequest = clerkMiddleware((auth, context) => {
   const { redirectToSignIn, userId } = auth();
   
-  // If user is not authenticated and trying to access protected route
   if (!userId && isProtectedRoute(context.request)) {
-    return redirectToSignIn();
+    return redirectToSignIn({ returnBackUrl: context.request.url });
   }
 });

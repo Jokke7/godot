@@ -32,3 +32,8 @@ TODO.md
 PROGRESS.md
 PROGRESS_README.md
 scripts/progress.sh
+
+# debug and fix documentation (local only)
+DEPLOYMENT.md
+Fix_*.txt
+*.debug.md
