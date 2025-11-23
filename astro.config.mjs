@@ -14,6 +14,8 @@ export default defineConfig({
     clerk({
       // Set to false because we use custom middleware in src/middleware.ts
       middleware: false,
+      signInUrl: '/sign-in',
+      afterSignInUrl: '/',
     })
   ],
   vite: {
