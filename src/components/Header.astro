@@ -1,4 +1,5 @@
 ---
+import { SignedIn, SignedOut, UserButton } from '@clerk/astro/components';
 const pathname = Astro.url.pathname;
 ---
 
@@ -63,6 +64,28 @@ const pathname = Astro.url.pathname;
             class="vibe-image"
           />
         </a>
+        
+        <!-- User Avatar -->
+        <SignedIn>
+          <UserButton 
+            appearance={{
+              elements: {
+                avatarBox: "w-10 h-10"
+              }
+            }}
+          />
+        </SignedIn>
+        <SignedOut>
+          <a 
+            href="/sign-in"
+            class="w-10 h-10 rounded-full bg-[var(--color-surface)] border-2 border-[var(--color-surface-elevated)] flex items-center justify-center opacity-60 hover:opacity-80 transition-opacity"
+            aria-label="Sign In"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </a>
+        </SignedOut>
       </div>
       
       <!-- Mobile Menu Button -->
@@ -112,6 +135,30 @@ const pathname = Astro.url.pathname;
             class="w-24 mx-auto hover:opacity-80 transition-opacity"
           />
         </a>
+        
+        <!-- User Avatar -->
+        <div class="flex justify-center pt-2 border-t border-[var(--color-surface-elevated)]">
+          <SignedIn>
+            <UserButton 
+              appearance={{
+                elements: {
+                  avatarBox: "w-12 h-12"
+                }
+              }}
+            />
+          </SignedIn>
+          <SignedOut>
+            <a 
+              href="/sign-in"
+              class="w-12 h-12 rounded-full bg-[var(--color-surface-elevated)] border-2 border-[var(--color-surface-elevated)] flex items-center justify-center opacity-60 hover:opacity-80 transition-opacity"
+              aria-label="Sign In"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+            </a>
+          </SignedOut>
+        </div>
       </div>
     </div>
   </nav>

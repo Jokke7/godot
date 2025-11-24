@@ -23,6 +23,15 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# VS Code settings (developer-specific)
+.vscode/
+
+# Obsidian vault configuration
+.obsidian/
+
+# Local project files
+project_files/
+
 # local AI assistant rules
 .cursorrules
 

@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { SignedIn, SignedOut, UserButton } from '@clerk/astro/components';
+import { SignedIn, SignedOut } from '@clerk/astro/components';
 import { getCV, getAllFlavors } from '../../lib/cv';
 
 export async function getStaticPaths() {
@@ -27,30 +27,21 @@ const cvData = await getCV(flavor!);
     <SignedIn>
       <section class="min-h-screen py-16">
         <div class="container max-w-4xl">
-          <!-- User Menu -->
-          <div class="flex justify-between items-center mb-8">
-            <div class="flex gap-2">
-              {(await getAllFlavors()).map(f => (
-                <a 
-                  href={`/cv/${f.data.id}`}
-                  class:list={[
-                    "px-3 py-1 text-sm rounded-lg transition-colors",
-                    f.data.id === flavor
-                      ? "bg-[var(--color-primary)] text-white"
-                      : "bg-[var(--color-surface)] text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-elevated)]"
-                  ]}
-                >
-                  {f.data.title}
-                </a>
-              ))}
-            </div>
-            <UserButton 
-              appearance={{
-                elements: {
-                  avatarBox: "w-10 h-10"
-                }
-              }}
-            />
+          <!-- CV Flavor Selector -->
+          <div class="flex gap-2 mb-8">
+            {(await getAllFlavors()).map(f => (
+              <a 
+                href={`/cv/${f.data.id}`}
+                class:list={[
+                  "px-3 py-1 text-sm rounded-lg transition-colors",
+                  f.data.id === flavor
+                    ? "bg-[var(--color-primary)] text-white"
+                    : "bg-[var(--color-surface)] text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-elevated)]"
+                ]}
+              >
+                {f.data.title}
+              </a>
+            ))}
           </div>
 
           <!-- CV Header -->
